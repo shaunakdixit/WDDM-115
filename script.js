@@ -56,11 +56,11 @@ const products = [
         code: "black",
         img: "./img/crater.png",
       },
-      // {
-      //   code: "lightgray",
-      //   img: "./img/crater2.png",
+      {
+        code: "lightgray",
+        img: "./img/crater2.png",
     
-      // },
+      },
     ],
   },
   {
@@ -137,3 +137,24 @@ productButton.addEventListener("click", () => {
 close.addEventListener("click", () => {
   payment.style.display = "none";
 });
+
+
+currentProductColors.forEach((color, index) => {
+  color.addEventListener("mouseover", () => {
+    color.style.border = "10px solid white"; // Change border on hover
+  });
+
+  color.addEventListener("mouseout", () => {
+    color.style.border = "none"; // Revert border on mouseout
+  });
+});
+
+
+currentProductImg.addEventListener("mouseenter", () => {
+  currentProductImg.style.border = "2px solid red"; // Change border on mouseenter
+});
+
+currentProductImg.addEventListener("mouseleave", () => {
+  currentProductImg.style.border = "none"; // Revert border on mouseleave
+});
+
