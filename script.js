@@ -126,3 +126,5 @@ currentProductSizes.forEach((size, index) => {
   });
 });
 
+const productButton = document.querySelector(".productButton");
+
