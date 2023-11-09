@@ -1,1 +1,35 @@
+html {
+  scroll-behavior: smooth;
+  font-family: 'League Spartan', sans-serif;
+font-family: 'Nunito', sans-serif;
+font-family: 'Palanquin Dark', sans-serif;
+font-family: 'Roboto Slab', serif;
+  
+}
 
+body {
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  /* background-color: #111; */
+  background-color: #232c5b;
+  color: white;
+  padding: 20px 50px;
+}
+
+.navTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: gray;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
