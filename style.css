@@ -1,22 +1,35 @@
+
+:root {
+    /* Color Variables */
+    --primary-color: #232c5b;
+    --text-color: white;
+
+    /* Font Variables */
+    --font-primary: 'League Spartan', sans-serif;
+    --font-secondary: 'Nunito', sans-serif;
+    --font-tertiary: 'Palanquin Dark', sans-serif;
+    --font-quaternary: 'Roboto Slab', serif;
+    --font-body: 'Lato', sans-serif;
+}
 html {
   scroll-behavior: smooth;
-  font-family: 'League Spartan', sans-serif;
-font-family: 'Nunito', sans-serif;
-font-family: 'Palanquin Dark', sans-serif;
-font-family: 'Roboto Slab', serif;
+  font-family: var(--font-primary);
+font-family: var(--font-secondary);
+font-family: var(--font-tertiary);
+font-family: var(--font-quaternary);
   
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: var(--font-body);
   padding: 0;
   margin: 0;
 }
 
 nav {
   /* background-color: #111; */
-  background-color: #232c5b;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   padding: 20px 50px;
 }
 
@@ -44,7 +57,7 @@ nav {
 }
 
 .limitedOffer {
-  font-size: 20px;
+  font-size: 1.25rem;
   border-bottom: 2px solid rgb(194, 40, 156);
   cursor: pointer;
 }
@@ -114,7 +127,7 @@ nav {
   position: absolute;
   top: 10%;
   right: 10%;
-  font-size: 60px;
+  font-size: 3.75rem;
   font-weight: 900;
   text-align: center;
   color: rgb(44, 182, 32);
@@ -125,10 +138,10 @@ nav {
   position: absolute;
   top: 10%;
   left: 10%;
-  font-size: 60px;
+  font-size: 3.75rem;
   font-weight: 300;
   text-align: center;
-  color: white;
+  color: var(--text-color);
   border: 1px solid gray;
   z-index: 1;
 }
@@ -137,9 +150,9 @@ nav {
   position: absolute;
   top: 50%;
   right: 10%;
-  font-size: 30px;
+  font-size: 1.88rem;
   font-weight: 900;
-  color: white;
+  color: var(--text-color);
   border: 1px solid gray;
   background-color: black;
   z-index: 1;
@@ -147,12 +160,12 @@ nav {
 }
 
 .buyButton:hover {
-  background-color: white;
+  background-color: var(--text-color);
   color: black;
 }
 
 .sliderItem:nth-child(1) .sliderBg {
-  background-color: #232c5b;
+  background-color: var(--primary-color);
 }
 .sliderItem:nth-child(2) .sliderBg {
   background-color: rebeccapurple;
@@ -171,7 +184,7 @@ nav {
   color: #369e62;
 }
 .sliderItem:nth-child(2) .sliderPrice {
-  color: white;
+  color: var(--text-color);
 }
 .sliderItem:nth-child(3) .sliderPrice {
   color: teal;
@@ -203,7 +216,7 @@ nav {
 }
 
 .featureTitle {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   margin: 20px;
 }
@@ -224,7 +237,7 @@ nav {
 .payment {
   width: 500px;
   height: 500px;
-  background-color: white;
+  background-color: var(--text-color);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -239,12 +252,12 @@ nav {
 }
 
 .payTitle {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: lightgray;
 }
 
 label {
-  font-size: 14px;
+  font-size: 0.88rem;
   font-weight: 300;
 }
 
@@ -285,7 +298,7 @@ label {
   -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.3);
   background-color: #369e62;
-  color: white;
+  color: var(--text-color);
   border: none;
   cursor: pointer;
 }
@@ -295,7 +308,7 @@ label {
   height: 20px;
   position: absolute;
   background-color: gray;
-  color: white;
+  color: var(--text-color);
   top: 10px;
   right: 10px;
   display: flex;
@@ -319,7 +332,7 @@ label {
 }
 
 .productTitle {
-  font-size: 75px;
+  font-size: 4.69rem;
   font-weight: 900;
 }
 
@@ -352,20 +365,20 @@ label {
   border: 1px solid black;
   margin-right: 10px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .productButton {
   float: right;
   padding: 10px 20px;
   background-color: black;
-  color: white;
+  color: var(--text-color);
   font-weight: 600;
   cursor: pointer;
 }
 
 .productButton:hover {
-  background-color: white;
+  background-color: var(--text-color);
   color: black;
 }
 
@@ -390,7 +403,7 @@ label {
 .nsItem {
   flex: 1;
   background-color: black;
-  color: white;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -404,7 +417,7 @@ label {
 }
 
 .nsTitle {
-  font-size: 40px;
+  font-size: 2.50rem;
 }
 
 .nsButton {
@@ -425,7 +438,7 @@ footer {
 }
 
 .fMenuTitle {
-  font-size: 16px;
+  font-size: 1.00rem;
 }
 
 .fList {
@@ -454,7 +467,7 @@ footer {
 .fButton {
   padding: 5px;
   background-color: black;
-  color: white;
+  color: var(--text-color);
 }
 
 .fIcons{
@@ -469,7 +482,7 @@ footer {
 
 .copyright{
   font-weight: 300;
-  font-size: 14px;
+  font-size: 0.88rem;
 }
 
 @media screen and (max-width:480px) {
@@ -488,7 +501,7 @@ footer {
   .menuItem{
     margin: 20px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .slider{
@@ -547,7 +560,7 @@ footer {
   }
 
   .productTitle{
-    font-size: 50px;
+    font-size: 3.12rem;
     margin: 0;
   }
 
@@ -577,11 +590,60 @@ footer {
     padding: 20px;
     width: 90%;
     align-items: center;
-    background-color: whitesmoke;
+    background-color: var(--text-color)smoke;
   }
 
   .payment{
     width: 90%;
     padding: 20px;
   }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 0.8rem;
+    }
+    nav {
+        padding: 10px 20px;
+    }
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        font-size: 0.9rem;
+    }
+    nav {
+        padding: 15px 30px;
+    }
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+a:hover, button:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a:focus, button:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+nav::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+
+nav::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
 }
