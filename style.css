@@ -622,3 +622,28 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+a:hover, button:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a:focus, button:focus {
+    outline: 2px solid var(--primary-color);
+}
+
+nav::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+
+nav::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-color);
+}
