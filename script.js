@@ -35,33 +35,38 @@ function updateColorSelection(colorIndex) {
     currentProductImg.src = chosenProduct.colors[colorIndex].img;
 }
 
+let selectedSizeElement = null;
+
 function updateSizeSelection(selectedSize) {
-    currentProductSizes.forEach(size => {
-        size.style.backgroundColor = "white";
-        size.style.color = "black";
-    });
-    selectedSize.style.backgroundColor = "black";
-    selectedSize.style.color = "white";
+  if (selectedSizeElement) {
+    selectedSizeElement.style.backgroundColor = "white";
+    selectedSizeElement.style.color = "black";
+  }
+  selectedSizeElement = selectedSize;
+  selectedSizeElement.style.backgroundColor = "black";
+  selectedSizeElement.style.color = "white";
 }
 
-menuItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-        wrapper.style.transform = `translateX(${-100 * index}vw)`;
-        chosenProduct = products[index];
-        updateProductDisplay(chosenProduct);
-    });
+function addEventListeners(elements, eventType, handler) {
+  elements.forEach(element => {
+    element.addEventListener(eventType, handler);
+  });
+}
+
+addEventListeners(menuItems, 'click', (event) => {
+  const index = Array.from(menuItems).indexOf(event.target);
+  wrapper.style.transform = `translateX(${-100 * index}vw)`;
+  chosenProduct = products[index];
+  updateProductDisplay(chosenProduct);
 });
 
-currentProductColors.forEach((color, index) => {
-    color.addEventListener("click", () => {
-        updateColorSelection(index);
-    });
+addEventListeners(currentProductColors, 'click', (event) => {
+  const index = Array.from(currentProductColors).indexOf(event.target);
+  updateColorSelection(index);
 });
 
-currentProductSizes.forEach(size => {
-    size.addEventListener("click", () => {
-        updateSizeSelection(size);
-    });
+addEventListeners(currentProductSizes, 'click', (event) => {
+  updateSizeSelection(event.target);
 });
 
 const productButton = document.querySelector(".productButton");
@@ -76,20 +81,18 @@ close.addEventListener("click", () => {
   payment.style.display = "none";
 });
 
-currentProductColors.forEach((color, index) => {
-  color.addEventListener("mouseover", () => {
-    color.style.border = "10px solid white";
-  });
-
-  color.addEventListener("mouseout", () => {
-    color.style.border = "none";
-  });
+addEventListeners(currentProductColors, 'mouseover', (event) => {
+  event.target.style.border = "10px solid white";
 });
 
-currentProductImg.addEventListener("mouseenter", () => {
-  currentProductImg.style.border = "2px solid red";
+addEventListeners(currentProductColors, 'mouseout', (event) => {
+  event.target.style.border = "none";
 });
 
-currentProductImg.addEventListener("mouseleave", () => {
-  currentProductImg.style.border = "none";
+addEventListeners([currentProductImg], 'mouseenter', () => {
+  currentProductImg.style.border = '2px solid red';
+});
+
+addEventListeners([currentProductImg], 'mouseleave', () => {
+  currentProductImg.style.border = 'none';
 });
