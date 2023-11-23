@@ -1,86 +1,23 @@
 const wrapper = document.querySelector(".sliderWrapper");
 const menuItems = document.querySelectorAll(".menuItem");
 
-const products = [
-  {
-    id: 1,
-    title: "Air Force",
-    price: 119,
-    colors: [
-      {
-        code: "black",
-        img: "./img/air.png",
-      },
-      {
-        code: "darkblue",
-        img: "./img/air2.png",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "Air Jordan",
-    price: 149,
-    colors: [
-      {
-        code: "lightgray",
-        img: "./img/jordan.png",
-      },
-      {
-        code: "green",
-        img: "./img/jordan2.png",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "Blazer",
-    price: 109,
-    colors: [
-      {
-        code: "lightgray",
-        img: "./img/blazer.png",
-      },
-      {
-        code: "green",
-        img: "./img/blazer2.png",
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Crater",
-    price: 129,
-    colors: [
-      {
-        code: "black",
-        img: "./img/crater.png",
-      },
-      {
-        code: "lightgray",
-        img: "./img/crater2.png",
-    
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: "Hippie",
-    price: 99,
-    colors: [
-      {
-        code: "gray",
-        img: "./img/hippie.png",
-      },
-      {
-        code: "black",
-        img: "./img/hippie2.png",
-      },
-    ],
-  },
-];
+let products = [];
+let chosenProduct;
 
-let choosenProduct = products[0];
+function fetchData() {
+  fetch('https://raw.githubusercontent.com/shaunakdixit/WDDM-115/main/products.json')
+    .then(response => response.json())
+    .then(data => {
+      products = data;
+      if(products.length > 0) {
+        chosenProduct = products[0];
+        updateProductDisplay(chosenProduct);
+      }
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}  
+
+fetchData();
 
 const currentProductImg = document.querySelector(".productImg");
 const currentProductTitle = document.querySelector(".productTitle");
@@ -88,42 +25,48 @@ const currentProductPrice = document.querySelector(".productPrice");
 const currentProductColors = document.querySelectorAll(".color");
 const currentProductSizes = document.querySelectorAll(".size");
 
+function updateProductDisplay(product) {
+    currentProductTitle.textContent = product.title;
+    currentProductPrice.textContent = `$${product.price}`;
+    currentProductImg.src = product.colors[0].img;
+}
 
-menuItems.forEach((item, index) => {
-  item.addEventListener("click", () => {
-    //change the current slide
-    wrapper.style.transform = `translateX(${-100 * index}vw)`;
+function updateColorSelection(colorIndex) {
+    currentProductImg.src = chosenProduct.colors[colorIndex].img;
+}
 
-    //change the choosen product
-    choosenProduct = products[index];
+let selectedSizeElement = null;
 
-    //change texts of currentProduct
-    currentProductTitle.textContent = choosenProduct.title;
-    currentProductPrice.textContent = "$" + choosenProduct.price;
-    currentProductImg.src = choosenProduct.colors[0].img;
+function updateSizeSelection(selectedSize) {
+  if (selectedSizeElement) {
+    selectedSizeElement.style.backgroundColor = "white";
+    selectedSizeElement.style.color = "black";
+  }
+  selectedSizeElement = selectedSize;
+  selectedSizeElement.style.backgroundColor = "black";
+  selectedSizeElement.style.color = "white";
+}
 
-    //assing new colors
-    currentProductColors.forEach((color, index) => {
-      color.style.backgroundColor = choosenProduct.colors[index].code;
-    });
+function addEventListeners(elements, eventType, handler) {
+  elements.forEach(element => {
+    element.addEventListener(eventType, handler);
   });
+}
+
+addEventListeners(menuItems, 'click', (event) => {
+  const index = Array.from(menuItems).indexOf(event.target);
+  wrapper.style.transform = `translateX(${-100 * index}vw)`;
+  chosenProduct = products[index];
+  updateProductDisplay(chosenProduct);
 });
 
-currentProductColors.forEach((color, index) => {
-  color.addEventListener("click", () => {
-    currentProductImg.src = choosenProduct.colors[index].img;
-  });
+addEventListeners(currentProductColors, 'click', (event) => {
+  const index = Array.from(currentProductColors).indexOf(event.target);
+  updateColorSelection(index);
 });
 
-currentProductSizes.forEach((size, index) => {
-  size.addEventListener("click", () => {
-    currentProductSizes.forEach((size) => {
-      size.style.backgroundColor = "white";
-      size.style.color = "black";
-    });
-    size.style.backgroundColor = "black";
-    size.style.color = "white";
-  });
+addEventListeners(currentProductSizes, 'click', (event) => {
+  updateSizeSelection(event.target);
 });
 
 const productButton = document.querySelector(".productButton");
@@ -138,23 +81,18 @@ close.addEventListener("click", () => {
   payment.style.display = "none";
 });
 
-
-currentProductColors.forEach((color, index) => {
-  color.addEventListener("mouseover", () => {
-    color.style.border = "10px solid white"; // Change border on hover
-  });
-
-  color.addEventListener("mouseout", () => {
-    color.style.border = "none"; // Revert border on mouseout
-  });
+addEventListeners(currentProductColors, 'mouseover', (event) => {
+  event.target.style.border = "10px solid white";
 });
 
-
-currentProductImg.addEventListener("mouseenter", () => {
-  currentProductImg.style.border = "2px solid red"; // Change border on mouseenter
+addEventListeners(currentProductColors, 'mouseout', (event) => {
+  event.target.style.border = "none";
 });
 
-currentProductImg.addEventListener("mouseleave", () => {
-  currentProductImg.style.border = "none"; // Revert border on mouseleave
+addEventListeners([currentProductImg], 'mouseenter', () => {
+  currentProductImg.style.border = '2px solid red';
 });
 
+addEventListeners([currentProductImg], 'mouseleave', () => {
+  currentProductImg.style.border = 'none';
+});
