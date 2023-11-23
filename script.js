@@ -1,6 +1,7 @@
 const wrapper = document.querySelector(".sliderWrapper");
 const menuItems = document.querySelectorAll(".menuItem");
 let products = []
+let choosenProduct
 
 function fetchData() {
 
@@ -9,13 +10,15 @@ function fetchData() {
     .then(data => {
       console.log(data)
       products = data;
+    }).then(() => {
+      choosenProduct = products[0];
     })
     .catch(error => console.error('Error fetching data:', error));
 }  
 
 fetchData();
 
-let choosenProduct = products[0];
+
 
 const currentProductImg = document.querySelector(".productImg");
 const currentProductTitle = document.querySelector(".productTitle");
