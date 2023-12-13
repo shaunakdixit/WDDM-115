@@ -236,7 +236,21 @@ $(document).ready(function() {
             $('.payment').hide();
         });
     });
+    $(document).ready(function() {
+        // Event listener for the Join button in the newsletter section
+        $('.fButton').click(function() {
+            // Capture email address
+            var email = $('.fInput').val();
 
+            console.log("email address for newsletter getting saved: ",{email})
+            // Save to local storage
+            localStorage.setItem('newsletterEmail', email);
+
+            // Optional: Confirmation message or further actions
+        });
+
+        // Rest of your script...
+    });
 
 
 });
