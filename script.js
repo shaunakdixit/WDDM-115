@@ -10,12 +10,22 @@ function fetchData() {
     .then(data => {
       products = data;
       if(products.length > 0) {
-        chosenProduct = products[0];
+          for(let i=0; i<products.length;i++){
+              console.log("Data Stored in local storage")
+              localStorage.setItem(`product_${i}`, JSON.stringify(products[i]))
+          }
+        chosenProduct = getProductFromLocalStorage(0);
         updateProductDisplay(chosenProduct);
       }
     })
     .catch(error => console.error('Error fetching data:', error));
-}  
+}
+// Function to get a product from local storage by index
+function getProductFromLocalStorage(index) {
+    const product = localStorage.getItem(`product_${index}`);
+    console.log("Data Fetched from local storage: ",{product})
+    return JSON.parse(product);
+}
 
 fetchData();
 
@@ -195,6 +205,38 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).ready(function() {
+        // Event listener for the Checkout button
+        console.log("Card data getting stored")
+        $('.payButton').click(function() {
+            // Capture card data
+            var name = $('input[placeholder="John Doe"]').val();
+            var phone = $('input[placeholder="+1 234 5678"]').val();
+            var address = $('input[placeholder="Elton St 21 22-145"]').val();
+            var cardNumber = $('input[placeholder="Card Number"]').val();
+            var expMonth = $('input[placeholder="mm"]').val();
+            var expYear = $('input[placeholder="yyyy"]').val();
+            var cvv = $('input[placeholder="cvv"]').val();
+
+            // Create an object to store
+            var cardData = {
+                name: name,
+                phone: phone,
+                address: address,
+                cardNumber: cardNumber,
+                expMonth: expMonth,
+                expYear: expYear,
+                cvv: cvv
+            };
+            console.log("card data getting stores: ",{cardData})
+
+            // Save to local storage
+            localStorage.setItem('cardData', JSON.stringify(cardData));
+            $('.payment').hide();
+        });
+    });
+
 
 
 });
